@@ -5,6 +5,9 @@ import productosRoutes from './routes/productos.routes.js'
 import usuariosRoutes from './routes/usuarios.routes.js'
 import accesosRoutes from './routes/accesos.routes.js'
 import categoriaRoutes from './routes/categoria.route.js'
+import pedidosRoutes from './routes/pedidos.routes.js'
+import detalleRoutes from './routes/detalles.routes.js'
+import estadosRoutes from './routes/estados.routes.js'
 import path from 'path'
 const app=express();
 //para que no genere conflito entre servicios
@@ -18,6 +21,9 @@ app.use('/api',productosRoutes);
 app.use('/api',usuariosRoutes);
 app.use('/api',accesosRoutes);
 app.use('/api',categoriaRoutes);
+app.use('/api',pedidosRoutes);
+app.use('/api',detalleRoutes);
+app.use('/api',estadosRoutes);
 app.use('/imagenes', express.static(path.resolve('src/imagenes')));
 //controlar errorescategoriaRoutes
 app.use((req,resp,next)=>{

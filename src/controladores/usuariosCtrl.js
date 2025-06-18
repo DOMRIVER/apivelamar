@@ -7,6 +7,33 @@ export const getUsuarios=async(req,res)=>{
         return res.status(500).json({message:'Error en el servidor'})
     }
 } 
+export const getUsuariosE=async(req,res)=>{
+    try {
+        const [result] = await conmysql.query('select * from usuarios WHERE PER_ID=2')
+        res.json({cant:result.length, data:result})
+    }catch(error) {
+        return res.status(500).json({message:'Error en el servidor'})
+    }
+} 
+
+export const getusuarioxid = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const [result] = await conmysql.query('SELECT * FROM usuarios WHERE USU_ID = ?', [id]);
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.json(result[0]); // Enviamos el cliente encontrado
+    } catch (error) {
+        return res.status(500).json({ message: 'Error en el servidor' });
+    }
+
+    
+}
+
 
 export const addUsuario = async (req, res) => {
     const { 
